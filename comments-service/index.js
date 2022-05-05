@@ -34,6 +34,10 @@ app.post("/posts/:id/comments", async (req, res) => {
   res.status(201).send(comments);
 });
 
+app.post("/events", (req, res) => {
+  console.log("Event Received: ", req.body.type);
+});
+
 app.listen(5001, () => {
   console.log("Listening on 5001");
 });
