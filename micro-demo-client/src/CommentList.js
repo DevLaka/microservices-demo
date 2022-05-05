@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const CommentList = ({ postId }) => {
   const [comments, setComments] = useState([]);
-  const fetchComments = async () => {
+  const fetchComments = async (postId) => {
     const res = await axios.get(
       `http://localhost:5001/posts/${postId}/comments`
     );
@@ -11,9 +11,8 @@ export const CommentList = ({ postId }) => {
   };
 
   useEffect(() => {
-    fetchComments();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    fetchComments(postId);
+  }, [postId]);
 
   const renderComments = comments.map((comment) => {
     return <li key={comment.id}>{comment.content}</li>;
