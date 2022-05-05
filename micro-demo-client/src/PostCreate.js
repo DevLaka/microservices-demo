@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const PostCreate = () => {
+export const PostCreate = () => {
   const [title, setTitle] = useState("");
   const onSubmitForm = async (e) => {
     e.preventDefault();
@@ -27,5 +27,3 @@ const PostCreate = () => {
     </div>
   );
 };
-
-export default PostCreate;
