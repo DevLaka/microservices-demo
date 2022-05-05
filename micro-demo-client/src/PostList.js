@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { CommentCreate } from "./CommentCreate";
+import { CommentList } from "./CommentList";
 
 export const PostList = () => {
   const [posts, setPosts] = useState({});
@@ -12,7 +14,7 @@ export const PostList = () => {
     fetchPosts();
   }, []);
 
-  const renderedPosts = Object.values(posts).map((post) => {
+  const renderPosts = Object.values(posts).map((post) => {
     return (
       <div
         className="card"
@@ -21,13 +23,15 @@ export const PostList = () => {
       >
         <div className="card-body">
           <h5>{post.title}</h5>
+          <CommentList postId={post.id} />
+          <CommentCreate postId={post.id} />
         </div>
       </div>
     );
   });
   return (
     <div className="d-flex flex-row flex-wrap justify-content-between">
-      {renderedPosts}
+      {renderPosts}
     </div>
   );
 };

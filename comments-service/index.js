@@ -23,6 +23,6 @@ app.post("/posts/:id/comments", (req, res) => {
   res.status(201).send(comments);
 });
 
-app.listen(6000, () => {
-  console.log("Listening on 6000");
+app.listen(5001, () => {
+  console.log("Listening on 5001");
 });
