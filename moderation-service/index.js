@@ -6,8 +6,21 @@ app.use(express.json());
 
 const posts = {};
 
-app.post("/events", (req, res) => {
-  console.log("Event Received: ", req.body);
+app.post("/events", async (req, res) => {
+  const { type, data } = req.body;
+  if (type === "CommentCreated") {
+    const status = data.content.includes("duck") ? "rejected" : "approved";
+    await axios.post("http://localhost:5010/events", {
+      type: "CommentModerated",
+      data: {
+        id: data.id,
+        postId: data.postId,
+        status,
+        content: data.content,
+      },
+    });
+  }
+  res.send({});
 });
 
 app.listen(5003, () => {
